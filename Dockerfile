@@ -1,5 +1,6 @@
 FROM  public.ecr.aws/docker/library/node:18
-RUN npm install -g n8n@0.220.0
-RUN npm install -g @multiformats/multiaddr
+RUN npm install n8n@0.220.0
+RUN npm install multiaddr
+ENV NODE_FUNCTION_ALLOW_EXTERNAL=multiaddr
 EXPOSE 5678
-ENTRYPOINT [ "n8n" ]
+ENTRYPOINT [ "node", "node_modules/.bin/n8n" ]
